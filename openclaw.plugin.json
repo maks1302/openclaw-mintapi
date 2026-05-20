@@ -31,8 +31,13 @@
       "mintapi_twitter_user_info",
       "mintapi_twitter_user_timeline",
       "mintapi_twitter_search",
+      "mintapi_twitter_tweet_info",
+      "mintapi_twitter_user_replies",
+      "mintapi_twitter_trends",
       "mintapi_youtube_video_info",
+      "mintapi_youtube_related",
       "mintapi_youtube_transcript",
+      "mintapi_youtube_comments",
       "mintapi_youtube_search"
     ]
   }

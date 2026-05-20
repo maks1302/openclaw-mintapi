@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.1
+
+- add Twitter/X tools:
+  - `mintapi_twitter_tweet_info`
+  - `mintapi_twitter_user_replies`
+  - `mintapi_twitter_trends`
+- add YouTube tools:
+  - `mintapi_youtube_related`
+  - `mintapi_youtube_comments`
+- tighten public README with usage and troubleshooting guidance
+
 ## 0.1.0
 
 - initial native OpenClaw plugin release

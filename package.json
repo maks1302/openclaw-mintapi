@@ -1,6 +1,6 @@
 {
   "name": "@mintapi/openclaw-mintapi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OpenClaw plugin that exposes MintAPI paid endpoints as native tools.",
   "license": "Apache-2.0",
   "type": "module",

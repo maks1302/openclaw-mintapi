@@ -100,6 +100,80 @@ export function registerTools(api, runtime) {
   });
 
   registerTool(api, {
+    name: "mintapi_twitter_tweet_info",
+    description: "Fetch Twitter/X tweet metadata through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        id: {
+          type: "string",
+          description: "Tweet id.",
+        },
+      },
+      required: ["id"],
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.twitter.tweetInfo({
+        id: params.id,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
+    name: "mintapi_twitter_user_replies",
+    description: "Fetch Twitter/X replies posted by a user through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        screenname: {
+          type: "string",
+          description: "Twitter/X handle without the @ prefix.",
+        },
+        cursor: {
+          type: "string",
+          description: "Optional pagination cursor.",
+        },
+      },
+      required: ["screenname"],
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.twitter.userReplies({
+        screenname: params.screenname,
+        cursor: params.cursor,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
+    name: "mintapi_twitter_trends",
+    description: "Fetch Twitter/X trends for a country through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        country: {
+          type: "string",
+          description: "Country name expected by MintAPI, for example UnitedStates.",
+        },
+      },
+      required: ["country"],
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.twitter.trends({
+        country: params.country,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
     name: "mintapi_youtube_video_info",
     description: "Fetch YouTube video metadata through MintAPI.",
     parameters: {
@@ -143,6 +217,49 @@ export function registerTools(api, runtime) {
   });
 
   registerTool(api, {
+    name: "mintapi_youtube_related",
+    description: "Fetch related YouTube videos through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        id: {
+          type: "string",
+          description: "YouTube video id.",
+        },
+        token: {
+          type: "string",
+          description: "Optional pagination token.",
+        },
+        geo: {
+          type: "string",
+          description: "Optional geographic code, for example US.",
+        },
+        lang: {
+          type: "string",
+          description: "Optional language code, for example en.",
+        },
+        fields: {
+          type: "string",
+          description: "Optional response projection.",
+        },
+      },
+      required: ["id"],
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.youtube.related({
+        id: params.id,
+        token: params.token,
+        geo: params.geo,
+        lang: params.lang,
+        fields: params.fields,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
     name: "mintapi_youtube_transcript",
     description: "Fetch a YouTube transcript through MintAPI.",
     parameters: {
@@ -170,6 +287,54 @@ export function registerTools(api, runtime) {
         id: params.id,
         params: params.params,
         lang: params.lang,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
+    name: "mintapi_youtube_comments",
+    description: "Fetch YouTube comments through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        id: {
+          type: "string",
+          description: "YouTube video id.",
+        },
+        token: {
+          type: "string",
+          description: "Optional pagination token.",
+        },
+        sort_by: {
+          type: "string",
+          description: "Optional sort mode such as newest or top.",
+        },
+        geo: {
+          type: "string",
+          description: "Optional geographic code, for example US.",
+        },
+        lang: {
+          type: "string",
+          description: "Optional language code, for example en.",
+        },
+        fields: {
+          type: "string",
+          description: "Optional response projection.",
+        },
+      },
+      required: ["id"],
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.youtube.comments({
+        id: params.id,
+        token: params.token,
+        sort_by: params.sort_by,
+        geo: params.geo,
+        lang: params.lang,
+        fields: params.fields,
       });
       return textResult(result);
     },
