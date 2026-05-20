@@ -7,7 +7,7 @@
   "homepage": "https://docs.mintapi.dev",
   "repository": {
     "type": "git",
-    "url": "https://github.com/maks1302/openclaw-mintapi.git"
+    "url": "git+https://github.com/maks1302/openclaw-mintapi.git"
   },
   "bugs": {
     "url": "https://github.com/maks1302/openclaw-mintapi/issues"
