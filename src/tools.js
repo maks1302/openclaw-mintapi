@@ -67,6 +67,72 @@ export function registerTools(api, runtime) {
   });
 
   registerTool(api, {
+    name: "mintapi_twitter_followers",
+    description: "Fetch Twitter/X followers through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        screenname: {
+          type: "string",
+          description: "Twitter/X handle without the @ prefix.",
+        },
+        cursor: {
+          type: "string",
+          description: "Optional pagination cursor.",
+        },
+        blue_verified: {
+          anyOf: [{ type: "string" }, { type: "number" }],
+          description: "Optional filter for blue verified followers.",
+        },
+      },
+      required: ["screenname"],
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.twitter.followers({
+        screenname: params.screenname,
+        cursor: params.cursor,
+        blue_verified: params.blue_verified,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
+    name: "mintapi_twitter_following",
+    description: "Fetch accounts followed by a Twitter/X user through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        screenname: {
+          type: "string",
+          description: "Twitter/X handle without the @ prefix.",
+        },
+        rest_id: {
+          type: "string",
+          description: "Optional numeric Twitter/X rest_id for disambiguation.",
+        },
+        cursor: {
+          type: "string",
+          description: "Optional pagination cursor.",
+        },
+      },
+      required: ["screenname"],
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.twitter.following({
+        screenname: params.screenname,
+        rest_id: params.rest_id,
+        cursor: params.cursor,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
     name: "mintapi_twitter_search",
     description: "Search Twitter/X through MintAPI.",
     parameters: {
@@ -93,6 +159,34 @@ export function registerTools(api, runtime) {
       const result = await client.twitter.search({
         query: params.query,
         search_type: params.search_type,
+        cursor: params.cursor,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
+    name: "mintapi_twitter_latest_replies",
+    description: "Fetch the latest replies for a Twitter/X post through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        id: {
+          type: "string",
+          description: "Tweet id.",
+        },
+        cursor: {
+          type: "string",
+          description: "Optional pagination cursor.",
+        },
+      },
+      required: ["id"],
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.twitter.latestReplies({
+        id: params.id,
         cursor: params.cursor,
       });
       return textResult(result);
@@ -208,6 +302,148 @@ export function registerTools(api, runtime) {
       const result = await client.youtube.videoInfo({
         id: params.id,
         extend: params.extend,
+        geo: params.geo,
+        lang: params.lang,
+        fields: params.fields,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
+    name: "mintapi_youtube_channel_videos",
+    description: "Fetch YouTube channel videos through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        id: {
+          type: "string",
+          description: "YouTube channel id.",
+        },
+        forUsername: {
+          type: "string",
+          description: "Optional YouTube username handle.",
+        },
+        sort_by: {
+          type: "string",
+          description: "Optional sort mode.",
+        },
+        token: {
+          type: "string",
+          description: "Optional pagination token.",
+        },
+        geo: {
+          type: "string",
+          description: "Optional geographic code, for example US.",
+        },
+        lang: {
+          type: "string",
+          description: "Optional language code, for example en.",
+        },
+        local: {
+          anyOf: [{ type: "string" }, { type: "number" }],
+          description: "Optional local mode toggle.",
+        },
+        fields: {
+          type: "string",
+          description: "Optional response projection.",
+        },
+      },
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.youtube.channelVideos({
+        id: params.id,
+        forUsername: params.forUsername,
+        sort_by: params.sort_by,
+        token: params.token,
+        geo: params.geo,
+        lang: params.lang,
+        local: params.local,
+        fields: params.fields,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
+    name: "mintapi_youtube_channel_about",
+    description: "Fetch YouTube channel about information through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        id: {
+          type: "string",
+          description: "YouTube channel id.",
+        },
+        forUsername: {
+          type: "string",
+          description: "Optional YouTube username handle.",
+        },
+        geo: {
+          type: "string",
+          description: "Optional geographic code, for example US.",
+        },
+        lang: {
+          type: "string",
+          description: "Optional language code, for example en.",
+        },
+        fields: {
+          type: "string",
+          description: "Optional response projection.",
+        },
+      },
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.youtube.channelAbout({
+        id: params.id,
+        forUsername: params.forUsername,
+        geo: params.geo,
+        lang: params.lang,
+        fields: params.fields,
+      });
+      return textResult(result);
+    },
+  });
+
+  registerTool(api, {
+    name: "mintapi_youtube_playlist",
+    description: "Fetch a YouTube playlist through MintAPI.",
+    parameters: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        id: {
+          type: "string",
+          description: "YouTube playlist id.",
+        },
+        token: {
+          type: "string",
+          description: "Optional pagination token.",
+        },
+        geo: {
+          type: "string",
+          description: "Optional geographic code, for example US.",
+        },
+        lang: {
+          type: "string",
+          description: "Optional language code, for example en.",
+        },
+        fields: {
+          type: "string",
+          description: "Optional response projection.",
+        },
+      },
+      required: ["id"],
+    },
+    async execute(_id, params) {
+      const client = await runtime.getClient();
+      const result = await client.youtube.playlist({
+        id: params.id,
+        token: params.token,
         geo: params.geo,
         lang: params.lang,
         fields: params.fields,

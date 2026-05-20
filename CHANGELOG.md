@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.2
+
+- add Twitter/X tools:
+  - `mintapi_twitter_followers`
+  - `mintapi_twitter_following`
+  - `mintapi_twitter_latest_replies`
+- add YouTube tools:
+  - `mintapi_youtube_channel_videos`
+  - `mintapi_youtube_channel_about`
+  - `mintapi_youtube_playlist`
+- extend README troubleshooting and usage coverage for the expanded surface
+
 ## 0.1.1
 
 - add Twitter/X tools:

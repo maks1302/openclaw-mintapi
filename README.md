@@ -16,7 +16,10 @@ Twitter/X:
 
 - `mintapi_twitter_user_info`
 - `mintapi_twitter_user_timeline`
+- `mintapi_twitter_followers`
+- `mintapi_twitter_following`
 - `mintapi_twitter_search`
+- `mintapi_twitter_latest_replies`
 - `mintapi_twitter_tweet_info`
 - `mintapi_twitter_user_replies`
 - `mintapi_twitter_trends`
@@ -24,6 +27,9 @@ Twitter/X:
 YouTube:
 
 - `mintapi_youtube_video_info`
+- `mintapi_youtube_channel_videos`
+- `mintapi_youtube_channel_about`
+- `mintapi_youtube_playlist`
 - `mintapi_youtube_related`
 - `mintapi_youtube_transcript`
 - `mintapi_youtube_comments`
@@ -132,6 +138,23 @@ Example:
 - `search_type`: optional
 - `cursor`: optional
 
+`mintapi_twitter_followers`
+
+- `screenname`: required
+- `cursor`: optional
+- `blue_verified`: optional
+
+`mintapi_twitter_following`
+
+- `screenname`: required
+- `rest_id`: optional
+- `cursor`: optional
+
+`mintapi_twitter_latest_replies`
+
+- `id`: required
+- `cursor`: optional
+
 `mintapi_twitter_tweet_info`
 
 - `id`: required
@@ -159,6 +182,33 @@ Example:
 
 - `id`: required
 - `extend`: optional
+- `geo`: optional
+- `lang`: optional
+- `fields`: optional
+
+`mintapi_youtube_channel_videos`
+
+- `id`: optional
+- `forUsername`: optional
+- `sort_by`: optional
+- `token`: optional
+- `geo`: optional
+- `lang`: optional
+- `local`: optional
+- `fields`: optional
+
+`mintapi_youtube_channel_about`
+
+- `id`: optional
+- `forUsername`: optional
+- `geo`: optional
+- `lang`: optional
+- `fields`: optional
+
+`mintapi_youtube_playlist`
+
+- `id`: required
+- `token`: optional
 - `geo`: optional
 - `lang`: optional
 - `fields`: optional
@@ -224,6 +274,12 @@ Example:
 
 - your signer module is loading, but it is not returning a signer that matches one of the accepted payment networks
 - align `preferredNetworks` with the signer families you actually support
+
+`A tool returns a validation error from MintAPI`
+
+- verify the required parameters for that tool
+- for channel-based YouTube tools, provide at least one stable identifier such as `id` or `forUsername`
+- for Twitter/X pagination tools, reuse the returned `cursor` exactly as provided
 
 `Package installs but plugin does not appear`
 
