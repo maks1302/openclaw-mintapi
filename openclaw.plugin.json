@@ -1,0 +1,39 @@
+{
+  "id": "mintapi",
+  "name": "MintAPI",
+  "description": "Expose MintAPI paid API endpoints as OpenClaw tools.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "baseUrl": {
+        "type": "string",
+        "description": "MintAPI base URL, for example https://api.mintapi.dev"
+      },
+      "signerModule": {
+        "type": "string",
+        "description": "Path to a signer module that satisfies @mintapi/gateway client requirements"
+      },
+      "preferredNetworks": {
+        "type": "array",
+        "description": "Preferred payment networks passed to the MintAPI client",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "signerModule"
+    ]
+  },
+  "contracts": {
+    "tools": [
+      "mintapi_twitter_user_info",
+      "mintapi_twitter_user_timeline",
+      "mintapi_twitter_search",
+      "mintapi_youtube_video_info",
+      "mintapi_youtube_transcript",
+      "mintapi_youtube_search"
+    ]
+  }
+}
