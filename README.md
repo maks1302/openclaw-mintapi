@@ -25,7 +25,7 @@ That separation keeps plugin issues, npm metadata, OpenClaw compatibility, and d
 ## Install
 
 ```bash
-openclaw plugins install npm:openclaw-mintapi
+openclaw plugins install npm:@mintapi/openclaw-mintapi
 openclaw plugins enable mintapi
 ```
 
@@ -94,6 +94,6 @@ npm run check
 
 - Plugin Name: `MintAPI`
 - Description: `Expose MintAPI paid Twitter/X and YouTube endpoints as native OpenClaw tools with x402-aware payment handling.`
-- Install Command: `openclaw plugins install npm:openclaw-mintapi`
+- Install Command: `openclaw plugins install npm:@mintapi/openclaw-mintapi`
 - Category: `Integration`
 - Tags: `mintapi, x402, payments, twitter, youtube, data`

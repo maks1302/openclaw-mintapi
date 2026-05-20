@@ -1,5 +1,5 @@
 {
-  "name": "openclaw-mintapi",
+  "name": "@mintapi/openclaw-mintapi",
   "version": "0.1.0",
   "description": "OpenClaw plugin that exposes MintAPI paid endpoints as native tools.",
   "license": "Apache-2.0",
@@ -33,6 +33,7 @@
   ],
   "scripts": {
     "check": "node --check index.js",
+    "pack:dry-run": "npm pack --dry-run",
     "test": "node --test"
   },
   "peerDependencies": {
@@ -40,6 +41,9 @@
   },
   "dependencies": {
     "@mintapi/gateway": "^0.1.7"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "openclaw": {
     "extensions": [

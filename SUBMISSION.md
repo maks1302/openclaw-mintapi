@@ -4,7 +4,7 @@ Use this when submitting to `openclawdir.com`.
 
 - Plugin Name: `MintAPI`
 - Description: `Expose MintAPI paid Twitter/X and YouTube endpoints as native OpenClaw tools with x402-aware payment handling.`
-- Install Command: `openclaw plugins install npm:openclaw-mintapi`
+- Install Command: `openclaw plugins install npm:@mintapi/openclaw-mintapi`
 - Configuration Example:
 
 ```json5
